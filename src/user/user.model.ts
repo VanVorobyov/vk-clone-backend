@@ -1,5 +1,5 @@
 import { Base, TimeStamps } from '@typegoose/typegoose/lib/defaultClasses';
-import { prop } from '@typegoose/typegoose';
+import { prop, Ref } from '@typegoose/typegoose';
 import { EnumGender } from './user.interface';
 
 export interface UserModel extends Base {}
@@ -25,4 +25,7 @@ export class UserModel extends TimeStamps {
 
   @prop()
   avatar: string;
+
+  @prop({ ref: () => UserModel })
+  friends: Ref<UserModel>[];
 }
